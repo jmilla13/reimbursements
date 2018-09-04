@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+ 
+{% block content %}
+  <h2>Reimbursement Request Form</h2>
+
+  <div class = 'contactinfo'> 
+    Questions? Contact Treasurer Julia Miller at uncclubfh@gmail.com
+  </div>
+
+
+  {% if success %}
+    <p>Thank you for your request.</p>
+
+  {% else %}
+
+    <form action="{{ url_for('submission') }}" method=post>
+      {{form.hidden_tag()}}
+   
+      {{form.name.label}}
+      {{form.name}}
+
+
+      {{form.date.label}}
+      {{form.date(placeholder='MM-DD-YYYY')}}
+
+
+      {{form.description.label}}
+      {{form.description(placeholder='eg. Gas for travel')}}
+
+      {{form.upload.label}}
+      {{form.upload}}
+      
+      {{form.method.label}}
+      {{form.method}}
+
+      {{form.address.label}}
+      {{form.address(placeholder='Enter the address you would like the check to be sent to')}}
+   
+      {{form.venmo.label}}
+      {{form.venmo(placeholder = 'eg. @uncfh')}}
+   
+      
+   
+      {{ form.submit }}
+    </form>
+  {% endif %}
+{% endblock %}
